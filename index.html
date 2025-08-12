@@ -1,0 +1,219 @@
+<!-- File: index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Certifications — Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>Abdul Farsith — Certifications</h1>
+      <p class="tagline">MongoDB • Spoken Tutorial • IBM • Learnathon • and more</p>
+      <nav>
+        <a href="#certs" class="btn">View Certificates</a>
+        <a href="#upload-instructions" class="btn ghost">How to add</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="controls" class="controls">
+      <input id="search" placeholder="Search by title, provider, year..." />
+      <select id="filter">
+        <option value="all">All providers</option>
+      </select>
+    </section>
+
+    <section id="certs" class="grid" aria-live="polite">
+      <!-- Cards are injected by scripts/app.js -->
+    </section>
+
+    <template id="card-template">
+      <article class="card">
+        <img class="thumb" src="" alt="certificate thumbnail" />
+        <div class="card-body">
+          <h3 class="cert-title"></h3>
+          <p class="meta"></p>
+          <div class="actions">
+            <a class="view" target="_blank">View</a>
+            <a class="download" download>Download</a>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <!-- Modal viewer -->
+    <div id="modal" class="modal" aria-hidden="true">
+      <button id="closeModal" class="modal-close">✕</button>
+      <img id="modalImg" src="" alt="certificate"/>
+      <div id="modalMeta" class="modal-meta"></div>
+    </div>
+
+    <section id="upload-instructions" class="instructions">
+      <h2>How to add a new certificate (GitHub Pages)</h2>
+      <ol>
+        <li>Create a GitHub repository (public) named <code>yourusername.github.io</code> or any repo and enable GitHub Pages from the <code>main</code> branch.</li>
+        <li>Copy these files into the repo root: <code>index.html</code>, <code>styles.css</code>, <code>app.js</code>, <code>certs.json</code>, and upload certificate images into a folder named <code>certs</code>.</li>
+        <li>Edit <code>certs.json</code> to add entries for each certificate (see sample below).</li>
+        <li>Commit & push. Your site will be live at <code>https://yourusername.github.io/</code> within a minute.</li>
+      </ol>
+
+      <h3>Sample certs.json entry</h3>
+      <pre>{
+  "title": "MongoDB Basics",
+  "provider": "MongoDB University",
+  "year": 2024,
+  "file": "certs/mongodb-basics.pdf",
+  "thumb": "certs/mongodb-basics-thumb.jpg"
+}</pre>
+
+      <p>Tip: keep file names short and lowercase, and include thumbnails for faster browsing.</p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">Made with ❤️ • Hosted on GitHub Pages</div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
+
+
+<!-- File: styles.css -->
+:root{
+  --bg:#0f1724; /* dark navy */
+  --card:#0b1220;
+  --accent:#60a5fa;
+  --glass: rgba(255,255,255,0.03);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:linear-gradient(180deg,#071025 0%, #081428 100%); color:#e6eef8}
+.container{max-width:1100px;margin:0 auto;padding:28px}
+.site-header{padding:36px 0;text-align:center}
+.site-header h1{margin:0;font-size:28px}
+.tagline{opacity:0.8;margin-top:6px}
+nav{margin-top:14px}
+.btn{display:inline-block;padding:8px 14px;border-radius:10px;background:var(--accent);color:#05203a;text-decoration:none;margin:0 6px;font-weight:600}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#e6eef8}
+.controls{display:flex;gap:12px;align-items:center;margin-bottom:18px}
+#search{flex:1;padding:10px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.04);color:inherit}
+#filter{padding:10px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.04);color:inherit}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column}
+.thumb{width:100%;height:160px;object-fit:cover}
+.card-body{padding:12px}
+.cert-title{margin:0 0 6px 0;font-size:16px}
+.meta{margin:0 0 10px 0;color:rgba(230,238,248,0.7);font-size:13px}
+.actions{display:flex;gap:8px}
+.actions a{padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.03);text-decoration:none;color:inherit;font-weight:600}
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:28px;background:rgba(0,0,0,0.6)}
+.modal[aria-hidden="false"]{display:flex}
+.modal img{max-width:90%;max-height:80%;box-shadow:0 10px 30px rgba(2,6,23,0.7);border-radius:6px}
+.modal-close{position:absolute;right:24px;top:18px;background:transparent;border:0;color:white;font-size:20px}
+.instructions{margin-top:36px;padding:18px;background:rgba(255,255,255,0.02);border-radius:10px}
+.site-footer{padding:18px;text-align:center;opacity:0.8;margin-top:30px}
+
+@media (max-width:520px){.controls{flex-direction:column;align-items:stretch}.thumb{height:140px}}
+
+
+
+<!-- File: certs.json -->
+[
+  {
+    "title": "MongoDB Basics",
+    "provider": "MongoDB University",
+    "year": 2024,
+    "file": "certs/mongodb-basics.pdf",
+    "thumb": "certs/mongodb-basics-thumb.jpg"
+  },
+  {
+    "title": "Spoken Tutorial: C Programming",
+    "provider": "Spoken Tutorial",
+    "year": 2023,
+    "file": "certs/spoken-c.pdf",
+    "thumb": "certs/spoken-c-thumb.jpg"
+  },
+  {
+    "title": "IBM Data Science Fundamentals",
+    "provider": "IBM",
+    "year": 2022,
+    "file": "certs/ibm-ds.pdf",
+    "thumb": "certs/ibm-ds-thumb.jpg"
+  }
+]
+
+
+
+<!-- File: app.js -->
+// Lightweight script to load certs.json and render cards. Works on GitHub Pages.
+(async function(){
+  const resp = await fetch('certs.json');
+  const certs = await resp.json();
+  const grid = document.getElementById('certs');
+  const tpl = document.getElementById('card-template');
+  const filter = document.getElementById('filter');
+  const search = document.getElementById('search');
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modalImg');
+  const modalMeta = document.getElementById('modalMeta');
+  const closeModal = document.getElementById('closeModal');
+
+  // Populate provider filter
+  const providers = Array.from(new Set(certs.map(c=>c.provider))).sort();
+  providers.forEach(p=>{
+    const o = document.createElement('option'); o.value = p; o.textContent = p; filter.appendChild(o);
+  });
+
+  function render(list){
+    grid.innerHTML='';
+    if(list.length===0){grid.innerHTML='<p style="opacity:.8">No certificates found.</p>'; return}
+    list.forEach(c=>{
+      const node = tpl.content.cloneNode(true);
+      node.querySelector('.thumb').src = c.thumb || c.file;
+      node.querySelector('.thumb').alt = c.title + ' — ' + c.provider;
+      node.querySelector('.cert-title').textContent = c.title;
+      node.querySelector('.meta').textContent = c.provider + ' • ' + c.year;
+      const view = node.querySelector('.view');
+      const download = node.querySelector('.download');
+      view.href = c.file; view.textContent = 'View';
+      download.href = c.file; download.textContent = 'Download';
+      // open in modal
+      view.addEventListener('click', (e)=>{ e.preventDefault(); openModal(c); });
+      download.addEventListener('click', ()=>{});
+      grid.appendChild(node);
+    })
+  }
+
+  function openModal(c){
+    modalImg.src = c.file;
+    modalMeta.textContent = c.title + ' — ' + c.provider + ' ('+c.year+')';
+    modal.setAttribute('aria-hidden','false');
+  }
+  function close(){ modal.setAttribute('aria-hidden','true'); modalImg.src=''; }
+  closeModal.addEventListener('click', close);
+  modal.addEventListener('click', (e)=>{ if(e.target===modal) close(); });
+
+  // Search & filter
+  function applyFilters(){
+    const q = search.value.trim().toLowerCase();
+    const f = filter.value;
+    const filtered = certs.filter(c=>{
+      const matchProvider = (f==='all') || (c.provider===f);
+      const matchQuery = !q || (c.title.toLowerCase().includes(q) || c.provider.toLowerCase().includes(q) || String(c.year).includes(q));
+      return matchProvider && matchQuery;
+    });
+    render(filtered);
+  }
+  search.addEventListener('input', applyFilters);
+  filter.addEventListener('change', applyFilters);
+
+  // initial render
+  render(certs);
+})();
+
